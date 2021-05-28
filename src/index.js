@@ -8,3 +8,12 @@ helper.sayHello();
 helperFunction();
 
 anotherFunction();
+
+// Example loading static file from JS
+async function fetchImage() {
+	const request = await fetch('static/test.jpeg');
+	const response = await request.blob();
+	console.log(response);
+}
+
+fetchImage();
