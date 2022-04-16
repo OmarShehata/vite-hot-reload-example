@@ -1,10 +1,7 @@
-# Web Boilerplate 
+# Vite Hot Reloading - A Complete Example
 
-My boilerplate setup for creative web projects.
+Example setup using Vite hot module reloading for creative coding.
 
-Install yarn: https://yarnpkg.com/.
+It shows how to import modules & swap them dynamically when the code is changed while retaining state.
 
-Then run `yarn` to install dependencies and `yarn dev` to run. It'll be running on [localhost:3000](http://localhost:3000/).
-
-The app will autoreload when any changes are made. 
-
+The video below shows a moving circle. Enable hot reload on this module allows us to vary its speed without restarting the simulation, or even pause it just by commenting out the line that steps the clock forward.

@@ -1,30 +1,36 @@
-import HotReloadBase from './HotReloadBase.js';
+import { HMREventHandler } from './HotModuleReloadSetup.js';
 
-class Draw extends HotReloadBase {
+class Draw {
 	constructor() {
-		super()
-
-		this.counter = 0;
+		this.timer = 0;
+	}
+	// Runs when the module is being swapped
+	// Here we copy the state from the old module instance
+	hotReload(oldModule) {
+		this.timer = oldModule.timer;
 	}
 
 	draw(canvas) {
-		this.counter += 1;
+		this.timer += 1;
 
 		const ctx = canvas.getContext('2d');
 		ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-		ctx.fillStyle = 'green';
-		const x = Math.sin(this.counter * 0.05) * 100;
-		ctx.fillRect(x, 10, 150, 100);
-	}
+		const rate = this.timer * 0.05;
+		const radius = (Math.min(canvas.width, canvas.height) * 0.5) * 0.9
 
-	hotReload(oldModule) {
-		this.counter = oldModule.counter;
+		const x = Math.cos(rate) * radius + canvas.width * 0.5;
+		const y = Math.sin(rate) * radius + canvas.height * 0.5;
+
+		ctx.beginPath();
+		ctx.arc(x, y, 20, 0, Math.PI * 2)
+		ctx.fillStyle = 'red';
+		ctx.fill()
 	}
 }
 
 if (import.meta.hot) {
-  import.meta.hot.accept(HotReloadBase.HotReloadHandler)
+  import.meta.hot.accept(HMREventHandler)
 }
 
 export default Draw;

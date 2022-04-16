@@ -1,7 +1,19 @@
+import HotModuleReloadSetup from './HotModuleReloadSetup.js';
+// Setup HMR
+const hmr = new HotModuleReloadSetup();
+// Load a module that will be updated dynamically
+await hmr.import('./Draw.js');
+// Now we access it through hmr.instances['Draw']
+// which will point to the new module when it gets swapped
+function draw() {
+  hmr.instances['Draw'].draw(canvas);
+  requestAnimationFrame(draw);
+}
 
-
+// Setup the canvas & render loop
 const canvas = document.createElement('canvas')
 document.body.appendChild(canvas);
+draw();
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -9,28 +21,3 @@ function resizeCanvas() {
 }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
-
-// Listen for hot module reload of patterns
-let activeModule = await import('./Draw.js');
-let activeInstance = new activeModule.default();
-
-document.body.addEventListener('hot-module-reload', (event) => {
-  const { newModule } = event.detail;
-  // If the module that changed is not the one currently active, ignore it
-  if (activeModule.default.name != newModule.default.name) {
-    return;
-  }
-  const newInstance = new newModule.default();
-  newInstance.hotReload(activeInstance)
-  activeInstance = newInstance;
-
-  activeModule = newModule;
-});
-
-function draw() {
-  activeInstance.draw(canvas);
-
-  requestAnimationFrame(draw);
-}
-
-draw();
