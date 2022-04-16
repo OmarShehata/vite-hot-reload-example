@@ -22,18 +22,16 @@ if (import.meta.hot) {
 
 This is enabled on `src/Draw.js`.
 
-To import this module, use `HotModuleReloadSetup.import(modulePath)`:
+To import this module, use `HotModuleReloadSetup.import(await import(modulePath))`:
 
 ```javascript
 import HotModuleReloadSetup from './HotModuleReloadSetup.js';
 // Setup HMR
 const hmr = new HotModuleReloadSetup();
 // Load a module that will be updated dynamically
-await hmr.import('./Draw.js');
-// Now we access it through hmr.instances['Draw']
-// which will point to the new module when it gets swapped
+hmr.import(await import('./Draw.js'));
 ```
 
-Then access an instance of your module through `hmr.instances['Draw']` which will get automatically swapped with a new instance when the code changes. This is how it's accessed in `src/index.js`.
+Then access an instance of this module through `hmr.instances['Draw']`. This will get automatically swapped with a new instance when the code changes. See an example in `src/index.js`.
 
 Finally, the HMR enabled module has a `hotReload` callback which is where you can copy any state variables from the old instance to the new one.
