@@ -1,5 +1,9 @@
 import { HMREventHandler } from './HotModuleReloadSetup.js';
 
+if (import.meta.hot) {
+  import.meta.hot.accept(HMREventHandler)
+}
+
 class Draw {
 	constructor() {
 		this.timer = 0;
@@ -27,10 +31,6 @@ class Draw {
 		ctx.fillStyle = 'red';
 		ctx.fill()
 	}
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(HMREventHandler)
 }
 
 export default Draw;

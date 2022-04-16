@@ -22,8 +22,7 @@ class HotModuleReloadSetup {
   		this.instances[name] = newInstance
 	}
 
-	async import(modulePath) {
-		const newModule = await import(modulePath);
+	import(newModule) {
 		const newInstance = new newModule.default();
 
 		const name = newModule.default.name;

@@ -1,8 +1,11 @@
 import { defineConfig } from "vite";
 
-// Uncomment this setting when running 
-// with SSL (hosting on Glitch etc)
 export default defineConfig({
+  build: {
+    minify: false,// TODO - I think you only need minifyInternalExports: false but I couldn't get that to work
+  }
+  // Uncomment this setting when running 
+  // with SSL (hosting on Glitch etc)
   // server: {
   //   strictPort: true,
   //   hmr: {
