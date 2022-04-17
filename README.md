@@ -14,6 +14,8 @@ Install dependencies `npm install` and run `npm run start`. Open http://localhos
 
 ### How it works
 
+_See my write up for more an in depth explanation: https://dev.to/omar4ur/vite-hot-module-replacement-a-complete-example-pkg._
+
 `src/HotModuleReloadSetup.js` encapsulates most of the work.
 
 To enable HMR on any module, add the following:
