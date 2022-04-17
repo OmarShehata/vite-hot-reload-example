@@ -1,5 +1,5 @@
 {
-  "name": "web-boilerplate-vite",
+  "name": "vite-hot-reload-example",
   "version": "0.0.0",
   "scripts": {
     "start": "vite",
