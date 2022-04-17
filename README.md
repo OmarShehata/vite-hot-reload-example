@@ -8,6 +8,10 @@ The video below shows a moving circle. Enabling hot reload on the Draw module al
 
 https://user-images.githubusercontent.com/1711126/163719147-84f645e2-0185-48a8-972f-59c8e8ba557f.mov
 
+### Setup
+
+Install dependencies `npm install` and run `npm run start`. Open http://localhost:3000/.
+
 ### How it works
 
 `src/HotModuleReloadSetup.js` encapsulates most of the work.
