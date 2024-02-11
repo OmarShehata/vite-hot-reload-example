@@ -5,8 +5,9 @@ if (import.meta.hot) {
 }
 
 class Draw {
-	constructor() {
+	constructor(canvas) {
 		this.timer = 0;
+		this.canvas = canvas
 	}
 	// Runs when the module is being swapped
 	// Here we copy the state from the old module instance
@@ -14,7 +15,8 @@ class Draw {
 		this.timer = oldModule.timer;
 	}
 
-	draw(canvas) {
+	draw() {
+		const canvas = this.canvas
 		this.timer += 1;
 
 		const ctx = canvas.getContext('2d');
